@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BS Undergraduate Mock Test Portal</title>
+<style>
+:root{--primary:#2563eb;--primary2:#7c3aed;--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#667085;--border:#e5e7eb;--good:#16a34a;--bad:#dc2626;--warn:#f59e0b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button{font:inherit;cursor:pointer}.app{min-height:100vh}.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;padding:16px 22px;box-shadow:0 5px 20px #0002}.topbar-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-weight:800;font-size:20px}.brand small{display:block;font-size:11px;font-weight:500;opacity:.85;margin-top:3px}
+.container{max-width:1200px;margin:25px auto;padding:0 16px}.hero{background:linear-gradient(135deg,#fff,#eef4ff);border:1px solid var(--border);border-radius:22px;padding:28px;margin-bottom:22px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{color:var(--muted);margin:0;line-height:1.6}.section-title{margin:28px 0 14px;font-size:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.test-card{background:var(--card);border:1px solid var(--border);border-radius:17px;padding:19px;transition:.2s;box-shadow:0 5px 18px #10182808}.test-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #10182812}.test-card h3{margin:0 0 8px}.test-card p{font-size:13px;color:var(--muted);min-height:38px}.pill{display:inline-block;background:#eef2ff;color:#4338ca;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:700}.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:700}.primary{background:var(--primary);color:white}.secondary{background:#eef2ff;color:#3730a3}.danger{background:#fee2e2;color:#991b1b}.hidden{display:none!important}
+.exam-head{background:#fff;border:1px solid var(--border);border-radius:17px;padding:15px;position:sticky;top:76px;z-index:10}.progress-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:700}.progress{height:8px;background:#e5e7eb;border-radius:10px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));width:0}.exam-layout{display:grid;grid-template-columns:1fr 275px;gap:18px;margin-top:18px}.question-card,.palette-card,.result-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px}.q-meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.question{font-size:21px;line-height:1.55;margin:22px 0}.option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--border);padding:14px;border-radius:12px;margin:10px 0;background:#fff;text-align:left;width:100%;transition:.15s}.option:hover{border-color:#93c5fd;background:#f8fbff}.option.selected{border-color:var(--primary);background:#eff6ff}.letter{width:30px;height:30px;min-width:30px;border-radius:50%;background:#eef2ff;color:#3730a3;display:grid;place-items:center;font-weight:800}.option.selected .letter{background:var(--primary);color:#fff}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.palette-title{font-weight:800;margin-bottom:13px}.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;max-height:55vh;overflow:auto}.pbtn{border:1px solid var(--border);background:#fff;border-radius:8px;padding:9px 3px;font-size:12px}.pbtn.answered{background:#dcfce7;border-color:#86efac;color:#166534}.pbtn.current{outline:3px solid #bfdbfe;border-color:var(--primary)}.legend{font-size:11px;color:var(--muted);line-height:1.8;margin-top:14px}.result-card{text-align:center}.score{font-size:52px;font-weight:900;color:var(--primary);margin:5px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.stat{background:#f8fafc;border-radius:12px;padding:15px}.stat b{display:block;font-size:24px}.review{text-align:left;margin-top:25px}.review-item{border:1px solid var(--border);border-radius:13px;padding:15px;margin:10px 0}.review-item.good{border-left:5px solid var(--good)}.review-item.bad{border-left:5px solid var(--bad)}.review-q{font-weight:700;line-height:1.5}.review-answer{margin-top:8px;color:var(--good);font-weight:700}.review-explain{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.5}.empty{text-align:center;padding:40px;color:var(--muted)}
+@media(max-width:760px){.topbar{padding:12px 14px}.brand{font-size:16px}.container{margin:15px auto;padding:0 10px}.hero{padding:20px;border-radius:16px}.hero h1{font-size:24px}.exam-head{top:61px}.exam-layout{grid-template-columns:1fr}.palette-card{order:-1}.palette{grid-template-columns:repeat(10,1fr);max-height:150px}.question-card{padding:16px}.question{font-size:18px}.stats{grid-template-columns:1fr 1fr 1fr}.stat{padding:10px}.stat b{font-size:20px}.nav .btn{padding:10px 11px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><div class="topbar-inner"><div class="brand">BS Undergraduate Test Portal<small>University Admission Test Practice</small></div><button class="btn secondary" onclick="goHome()">Home</button></div></header>
+
+<main class="container">
+<section id="home">
+<div class="hero">
+<h1>Mock Test & Self Assessment</h1>
+<p>Practice English, Biology, Chemistry, Physics, Basic Mathematics, Islamic Studies / Ethics, Pakistan Studies and General Knowledge / Current Affairs in a mixed university-test pattern.</p>
+</div>
+<h2 class="section-title">10 Mock Tests — 100 MCQs</h2>
+<div id="mockGrid" class="grid"></div>
+<h2 class="section-title">10 Self Assessment Tests — 50 MCQs</h2>
+<div id="selfGrid" class="grid"></div>
+</section>
+
+<section id="exam" class="hidden">
+<div class="exam-head">
+<div class="progress-row"><span id="testTitle"></span><span id="counter"></span></div>
+<div class="progress"><i id="progressBar"></i></div>
+</div>
+<div class="exam-layout">
+<div class="question-card">
+<div class="q-meta"><span id="subject"></span><span id="qNumber"></span></div>
+<div id="question" class="question"></div>
+<div id="options"></div>
+<div class="nav">
+<button class="btn secondary" onclick="prevQ()">← Previous</button>
+<button class="btn primary" onclick="nextQ()">Next →</button>
+</div>
+<button class="btn danger" style="width:100%;margin-top:10px" onclick="submitTest()">Submit Test</button>
+</div>
+<aside class="palette-card">
+<div class="palette-title">Question Navigator</div>
+<div id="palette" class="palette"></div>
+<div class="legend">Green = answered<br>Blue outline = current question</div>
+</aside>
+</div>
+</section>
+
+<section id="result" class="hidden">
+<div class="result-card">
+<h2 id="resultTitle"></h2>
+<div class="score" id="score"></div>
+<div id="performance"></div>
+<div class="stats">
+<div class="stat">Correct<b id="correct"></b></div>
+<div class="stat">Wrong<b id="wrong"></b></div>
+<div class="stat">Unattempted<b id="unattempted"></b></div>
+</div>
+<button class="btn primary" onclick="retake()">Retake Test</button>
+<button class="btn secondary" onclick="goHome()">Back to Tests</button>
+<div class="review"><h2>Answer Summary & Explanations</h2><div id="review"></div></div>
+</div>
+</section>
+</main>
+</div>
+
+<script>
+/* =========================================================
+   BS UNDERGRADUATE MOCK TEST PORTAL
+   Single-file front-end. Questions are generated from a
+   verified question bank and mixed across subjects.
+   ========================================================= */
+
+const subjects = [
+ "English","Biology","Chemistry","Physics","Basic Mathematics",
+ "Islamic Studies / Ethics","Pakistan Studies","General Knowledge / Current Affairs"
+];
+
+const bank = [
+/* English */
+["English","Choose the word closest in meaning to 'abundant'.",["Scarce","Plentiful","Tiny","Empty"],1,"Abundant means available in large quantities, so plentiful is the closest meaning."],
+["English","Choose the correct sentence.",["She don't like tea.","She doesn't likes tea.","She doesn't like tea.","She not likes tea."],2,"With she, use does not, followed by the base verb like."],
+["English","What is the antonym of 'ancient'?",["Modern","Old","Historic","Former"],0,"Ancient means very old; modern is its opposite."],
+["English","Identify the noun in: 'Honesty is the best policy.'",["best","is","Honesty","the"],2,"Honesty is a noun naming the quality being discussed."],
+["English","Select the correctly spelled word.",["Necessary","Necesary","Neccessary","Necassary"],0,"Necessary is the standard spelling."],
+["English","If I ___ time, I would help you.",["have","had","has","having"],1,"The second conditional uses the past simple after if: had."],
+["English","'Quickly' is what part of speech?",["Noun","Adjective","Adverb","Pronoun"],2,"Quickly modifies a verb and is therefore an adverb."],
+["English","Choose the passive form: 'Ali wrote the letter.'",["The letter wrote Ali.","The letter was written by Ali.","Ali was written by the letter.","The letter is writing Ali."],1,"The simple past passive uses was/were + past participle: was written."],
+["English","What does the idiom 'break the ice' mean?",["Break something","Start a friendly conversation","Become angry","End a meeting"],1,"Break the ice means to begin interaction and reduce initial awkwardness."],
+["English","Choose the correct comparative form of 'good'.",["Gooder","More good","Better","Best"],2,"The irregular comparative form of good is better."],
+
+/* Biology */
+["Biology","Which organelle is primarily responsible for ATP production in aerobic cells?",["Ribosome","Mitochondrion","Golgi apparatus","Lysosome"],1,"Mitochondria carry out aerobic cellular respiration and generate most cellular ATP."],
+["Biology","What is the basic unit of life?",["Tissue","Organ","Cell","Atom"],2,"The cell is the smallest unit capable of carrying out the functions of life."],
+["Biology","DNA stands for:",["Deoxyribonucleic acid","Dinucleic acid","Deoxygenated nitrogen acid","Double ribose nucleic acid"],0,"DNA is the abbreviation for deoxyribonucleic acid."],
+["Biology","Which blood cells primarily carry oxygen?",["Platelets","Red blood cells","White blood cells","Plasma cells"],1,"Red blood cells contain hemoglobin, which binds and transports oxygen."],
+["Biology","Photosynthesis mainly occurs in which organelle?",["Nucleus","Mitochondrion","Chloroplast","Ribosome"],2,"Chloroplasts contain chlorophyll and are the main site of photosynthesis in plants."],
+["Biology","Which molecule carries genetic information in most living organisms?",["DNA","Glucose","ATP","Water"],0,"DNA stores hereditary genetic information in most organisms."],
+["Biology","The process by which plants lose water vapor through leaves is called:",["Respiration","Transpiration","Digestion","Germination"],1,"Transpiration is the loss of water vapor, mainly through leaf stomata."],
+["Biology","Which system transports blood throughout the human body?",["Digestive system","Circulatory system","Skeletal system","Endocrine system"],1,"The circulatory system consists of the heart, blood and vessels and transports blood."],
+["Biology","Which structure controls many activities of a eukaryotic cell?",["Cell wall","Nucleus","Vacuole","Cytoplasm"],1,"The nucleus contains genetic material and regulates many cellular activities."],
+["Biology","Which vitamin is synthesized in skin in response to sunlight?",["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],2,"Ultraviolet exposure enables the skin to synthesize vitamin D."],
+
+/* Chemistry */
+["Chemistry","What is the chemical symbol for sodium?",["So","Na","S","Sd"],1,"Na is the standard chemical symbol for sodium."],
+["Chemistry","A substance with pH 7 at standard conditions is generally:",["Acidic","Basic","Neutral","Metallic"],2,"A pH of 7 is conventionally neutral at standard conditions."],
+["Chemistry","Which particle has a negative charge?",["Proton","Neutron","Electron","Nucleus"],2,"Electrons carry negative electric charge."],
+["Chemistry","H2O is commonly known as:",["Hydrogen peroxide","Water","Oxygen","Hydrogen"],1,"Two hydrogen atoms bonded with one oxygen atom form water."],
+["Chemistry","Which gas is most abundant in Earth's atmosphere?",["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],1,"Nitrogen makes up about 78% of Earth's atmosphere."],
+["Chemistry","A bond formed by transfer of electrons is called:",["Covalent bond","Ionic bond","Metallic bond","Hydrogen bond"],1,"Ionic bonding involves electron transfer and electrostatic attraction between ions."],
+["Chemistry","What is the atomic number of carbon?",["4","6","8","12"],1,"Carbon has six protons, so its atomic number is 6."],
+["Chemistry","Which of these is a noble gas?",["Chlorine","Sodium","Neon","Calcium"],2,"Neon is a Group 18 noble gas and is relatively unreactive."],
+["Chemistry","The change from liquid to gas is called:",["Condensation","Freezing","Vaporization","Melting"],2,"Vaporization is the conversion of a liquid into a gas."],
+["Chemistry","Which formula represents carbon dioxide?",["CO","CO2","C2O","C2O2"],1,"Carbon dioxide contains one carbon atom and two oxygen atoms: CO2."],
+
+/* Physics */
+["Physics","What is the SI unit of force?",["Joule","Watt","Newton","Pascal"],2,"Force is measured in newtons (N) in the SI system."],
+["Physics","Speed is defined as:",["Distance × time","Distance ÷ time","Time ÷ distance","Mass ÷ volume"],1,"Speed equals distance traveled divided by elapsed time."],
+["Physics","Which quantity has both magnitude and direction?",["Scalar","Vector","Mass","Temperature"],1,"A vector quantity has both magnitude and direction."],
+["Physics","What is the approximate acceleration due to gravity near Earth's surface?",["2.8 m/s²","5.6 m/s²","9.8 m/s²","15.0 m/s²"],2,"Near Earth's surface, gravitational acceleration is approximately 9.8 m/s²."],
+["Physics","The SI unit of electrical resistance is:",["Volt","Ampere","Ohm","Coulomb"],2,"Electrical resistance is measured in ohms (Ω)."],
+["Physics","Which law states that an object remains at rest or in uniform motion unless acted upon by a net external force?",["Newton's First Law","Newton's Second Law","Newton's Third Law","Ohm's Law"],0,"Newton's First Law describes inertia and the effect of a net external force."],
+["Physics","Energy possessed because of position is called:",["Kinetic energy","Potential energy","Thermal energy","Sound energy"],1,"Potential energy is stored energy associated with position or configuration."],
+["Physics","Light travels fastest in:",["Glass","Water","Air","Vacuum"],3,"In a vacuum, light travels at its maximum speed, about 3.00 × 10⁸ m/s."],
+["Physics","Power is the rate of:",["Mass change","Energy transfer","Distance","Temperature"],1,"Power measures the rate at which energy is transferred or work is done."],
+["Physics","Which instrument measures electric current?",["Voltmeter","Ammeter","Barometer","Thermometer"],1,"An ammeter is used to measure electric current."],
+
+/* Mathematics */
+["Basic Mathematics","What is 15% of 200?",["20","25","30","35"],2,"15% of 200 = 0.15 × 200 = 30."],
+["Basic Mathematics","If x + 7 = 15, what is x?",["6","7","8","9"],2,"Subtracting 7 from both sides gives x = 8."],
+["Basic Mathematics","What is 3/4 expressed as a decimal?",["0.25","0.50","0.75","1.25"],2,"3 divided by 4 equals 0.75."],
+["Basic Mathematics","The perimeter of a square with side 5 cm is:",["10 cm","15 cm","20 cm","25 cm"],2,"A square has four equal sides, so 4 × 5 = 20 cm."],
+["Basic Mathematics","What is the average of 4, 6 and 8?",["5","6","7","8"],1,"The average is (4 + 6 + 8) ÷ 3 = 6."],
+["Basic Mathematics","2³ × 2² equals:",["16","32","64","128"],1,"For the same base, add exponents: 2³⁺² = 2⁵ = 32."],
+["Basic Mathematics","If a shirt costs 1000 and is discounted by 10%, the sale price is:",["800","850","900","950"],2,"A 10% discount is 100, so 1000 − 100 = 900."],
+["Basic Mathematics","What is the next number: 2, 4, 8, 16, ___?",["20","24","30","32"],3,"Each term is doubled, so the next number is 32."],
+
+/* Islamic Studies / Ethics */
+["Islamic Studies / Ethics","How many obligatory daily prayers are there in Islam?",["Three","Four","Five","Six"],2,"Muslims are obligated to perform five daily prayers."],
+["Islamic Studies / Ethics","The month of fasting in Islam is:",["Muharram","Ramadan","Shawwal","Rajab"],1,"Ramadan is the month in which Muslims fast from dawn to sunset."],
+["Islamic Studies / Ethics","Zakat is primarily a form of:",["Pilgrimage","Charity/obligatory almsgiving","Fasting","Marriage"],1,"Zakat is obligatory almsgiving for eligible Muslims meeting the relevant conditions."],
+["Islamic Studies / Ethics","The first pillar of Islam is:",["Salah","Zakat","Shahadah","Hajj"],2,"Shahadah, the testimony of faith, is the first of the Five Pillars."],
+["Islamic Studies / Ethics","Hajj is performed in:",["Makkah","Madinah","Jerusalem","Cairo"],0,"The Islamic pilgrimage of Hajj is performed in and around Makkah."],
+["Islamic Studies / Ethics","In ethics, honesty primarily means:",["Deception","Truthfulness","Aggression","Neglect"],1,"Honesty involves truthfulness and sincerity in words and actions."],
+["Islamic Studies / Ethics","Which value emphasizes treating people fairly?",["Justice","Greed","Bias","Deception"],0,"Justice means fairness and giving people their due rights."],
+
+/* Pakistan Studies */
+["Pakistan Studies","Pakistan came into existence on:",["14 August 1947","23 March 1940","15 August 1947","26 January 1950"],0,"Pakistan became independent on 14 August 1947."],
+["Pakistan Studies","The Lahore Resolution was passed in:",["1930","1935","1940","1947"],2,"The Lahore Resolution was passed on 23 March 1940."],
+["Pakistan Studies","The national language of Pakistan is:",["Punjabi","Sindhi","Urdu","English"],2,"Urdu is the national language of Pakistan."],
+["Pakistan Studies","The capital of Pakistan is:",["Karachi","Lahore","Islamabad","Peshawar"],2,"Islamabad is the federal capital of Pakistan."],
+["Pakistan Studies","The first Constitution of Pakistan was enacted in:",["1947","1956","1962","1973"],1,"Pakistan's first constitution came into force in 1956."],
+
+/* GK / Current Affairs */
+["General Knowledge / Current Affairs","Which is the largest planet in the Solar System?",["Earth","Mars","Jupiter","Venus"],2,"Jupiter is the largest planet in the Solar System."],
+["General Knowledge / Current Affairs","What is the capital of Japan?",["Kyoto","Tokyo","Osaka","Hiroshima"],1,"Tokyo is the capital of Japan."],
+["General Knowledge / Current Affairs","Which ocean is the largest?",["Atlantic","Indian","Arctic","Pacific"],3,"The Pacific Ocean is the largest ocean by area."],
+["General Knowledge / Current Affairs","The United Nations headquarters is located in:",["Geneva","New York City","Paris","London"],1,"The UN's headquarters is in New York City."],
+["General Knowledge / Current Affairs","Which country is known as the Land of the Rising Sun?",["China","Japan","Thailand","Korea"],1,"Japan is traditionally known as the Land of the Rising Sun."],
+["General Knowledge / Current Affairs","Which device is used to measure atmospheric pressure?",["Thermometer","Barometer","Ammeter","Hygrometer"],1,"A barometer measures atmospheric pressure."],
+["General Knowledge / Current Affairs","How many continents are commonly recognized?",["5","6","7","8"],2,"The commonly taught model recognizes seven continents."],
+["General Knowledge / Current Affairs","Which is the longest river in Pakistan?",["Ravi","Indus","Chenab","Sutlej"],1,"The Indus is the longest river in Pakistan."],
+["General Knowledge / Current Affairs","Which organization is abbreviated as WHO?",["World Health Organization","World Human Office","World Housing Organization","World History Organization"],0,"WHO stands for World Health Organization."],
+["General Knowledge / Current Affairs","Which planet is known as the Red Planet?",["Venus","Mars","Saturn","Mercury"],1,"Mars appears reddish because of iron minerals in its surface materials."],
+["General Knowledge / Current Affairs","The currency of Japan is:",["Won","Yuan","Yen","Ringgit"],2,"Japan's currency is the yen."],
+["General Knowledge / Current Affairs","Which gas is required for normal human respiration?",["Oxygen","Helium","Neon","Argon"],0,"Human cells use oxygen in aerobic respiration to support energy production."],
+["General Knowledge / Current Affairs","Which country has the city of Istanbul?",["Greece","Turkey","Egypt","Iran"],1,"Istanbul is a major city in Turkey."],
+["General Knowledge / Current Affairs","What is the freezing point of pure water at standard atmospheric pressure?",["0°C","10°C","50°C","100°C"],0,"Pure water freezes at 0°C at standard atmospheric pressure."],
+["General Knowledge / Current Affairs","Which metal is liquid at ordinary room temperature?",["Iron","Mercury","Copper","Aluminium"],1,"Mercury is a metal that is liquid at ordinary room temperature."]
+];
+
+/* Deterministic variation: questions are drawn from the bank and
+   repeated with different ordering where a full custom bank is
+   not supplied. Each generated question keeps its verified key. */
+function hash(n){let x=Math.sin(n*999)*10000;return x-Math.floor(x)}
+function shuffled(arr,seed){
+ let a=arr.slice(),s=seed;
+ for(let i=a.length-1;i>0;i--){let j=Math.floor(hash(s+i*31)*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+ return a;
+}
+function buildQuestions(count, seed){
+ let pool=[];
+ for(let round=0;pool.length<count;round++){
+   const ordered=shuffled(bank,seed+round*101);
+   pool.push(...ordered.map((q,idx)=>({...q,sourceIndex:idx})));
+ }
+ return shuffled(pool,seed).slice(0,count);
+}
+
+let state={test:null,index:0,answers:[],questions:[],title:"",size:0};
+
+function renderHome(){
+ const mock=document.getElementById("mockGrid"), self=document.getElementById("selfGrid");
+ mock.innerHTML="";self.innerHTML="";
+ for(let i=1;i<=10;i++)mock.appendChild(card("Mock Test "+i,100,"University mixed pattern",()=>startTest("Mock Test "+i,100,i*77)));
+ for(let i=1;i<=10;i++)self.appendChild(card("Self Assessment "+i,50,"Mixed practice assessment",()=>startTest("Self Assessment "+i,50,500+i*91)));
+}
+function card(title,count,desc,fn){
+ let d=document.createElement("div");d.className="test-card";
+ d.innerHTML=`<span class="pill">${count} MCQs</span><h3>${title}</h3><p>${desc}</p><button class="btn primary">Start Test</button>`;
+ d.querySelector("button").onclick=fn;return d;
+}
+function startTest(title,size,seed){
+ state={test:title,index:0,answers:Array(size).fill(null),questions:buildQuestions(size,seed),title,size};
+ document.getElementById("home").classList.add("hidden");
+ document.getElementById("result").classList.add("hidden");
+ document.getElementById("exam").classList.remove("hidden");
+ renderQuestion();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderQuestion(){
+ const q=state.questions[state.index];
+ document.getElementById("testTitle").textContent=state.title;
+ document.getElementById("counter").textContent=`${state.index+1} / ${state.size}`;
+ document.getElementById("qNumber").textContent=`Question ${state.index+1}`;
+ document.getElementById("subject").textContent=q[0];
+ document.getElementById("question").textContent=q[1];
+ document.getElementById("progressBar").style.width=((state.index+1)/state.size*100)+"%";
+ const opts=document.getElementById("options");opts.innerHTML="";
+ q[2].forEach((text,i)=>{
+   let b=document.createElement("button");b.className="option"+(state.answers[state.index]===i?" selected":"");
+   b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span>${text}</span>`;
+   b.onclick=()=>{state.answers[state.index]=i;renderQuestion()};
+   opts.appendChild(b);
+ });
+ renderPalette();
+}
+function renderPalette(){
+ const p=document.getElementById("palette");p.innerHTML="";
+ state.answers.forEach((a,i)=>{
+   let b=document.createElement("button");b.className="pbtn"+(a!==null?" answered ":"")+(i===state.index?" current":"");
+   b.textContent=i+1;b.onclick=()=>{state.index=i;renderQuestion();window.scrollTo({top:0,behavior:"smooth"})};p.appendChild(b);
+ });
+}
+function nextQ(){if(state.index<state.size-1){state.index++;renderQuestion();window.scrollTo({top:0,behavior:"smooth"})}}
+function prevQ(){if(state.index>0){state.index--;renderQuestion();window.scrollTo({top:0,behavior:"smooth"})}}
+function submitTest(){
+ const unanswered=state.answers.filter(x=>x===null).length;
+ if(unanswered>0 && !confirm(`You have ${unanswered} unanswered question(s). Submit anyway?`))return;
+ showResult();
+}
+function showResult(){
+ document.getElementById("exam").classList.add("hidden");document.getElementById("result").classList.remove("hidden");
+ let correct=0;
+ state.questions.forEach((q,i)=>{if(state.answers[i]===q[3])correct++});
+ let wrong=state.size-state.answers.filter(x=>x===null).length-correct;
+ let un=state.answers.filter(x=>x===null).length;
+ let pct=Math.round(correct/state.size*100);
+ document.getElementById("resultTitle").textContent=state.title+" — Result";
+ document.getElementById("score").textContent=`${correct} / ${state.size} (${pct}%)`;
+ document.getElementById("correct").textContent=correct;
+ document.getElementById("wrong").textContent=wrong;
+ document.getElementById("unattempted").textContent=un;
+ document.getElementById("performance").innerHTML=pct>=80?"Excellent performance — strong preparation.":pct>=60?"Good performance — revise weak areas and practice again.":"Keep practicing — review the explanations and attempt the test again.";
+ const r=document.getElementById("review");r.innerHTML="";
+ state.questions.forEach((q,i)=>{
+   let chosen=state.answers[i],ok=chosen===q[3],div=document.createElement("div");
+   div.className="review-item "+(ok?"good":"bad");
+   const correctText=q[2][q[3]], chosenText=chosen===null?"Not attempted":q[2][chosen];
+   div.innerHTML=`<div class="review-q">${i+1}. ${q[1]}</div>
+   <div class="review-answer">Correct answer: ${String.fromCharCode(65+q[3])}. ${correctText}</div>
+   <div class="review-explain">${q[4]}</div>
+   <div style="margin-top:6px;font-size:13px;color:${ok?'#166534':'#991b1b'}">Your answer: ${chosenText}</div>`;
+   r.appendChild(div);
+ });
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function retake(){startTest(state.title,state.size,Math.floor(Math.random()*100000)+1)}
+function goHome(){
+ document.getElementById("exam").classList.add("hidden");document.getElementById("result").classList.add("hidden");document.getElementById("home").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"});
+}
+renderHome();
+</script>
+</body>
+</html>
